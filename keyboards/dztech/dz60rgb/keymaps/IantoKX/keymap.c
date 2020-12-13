@@ -1,10 +1,39 @@
 #include QMK_KEYBOARD_H
 
-enum my_keycodes {
-  SHIFT = SAFE_RANGE,
+enum custom_keycodes {
+  PLACEHOLDER = SAFE_RANGE,     // can always be here
+  US_OSX_SMALL_UE,
+  US_OSX_SMALL_AE,
+  US_OSX_SMALL_OE,
+  US_OSX_CAPITAL_UE,
+  US_OSX_CAPITAL_AE,
+  US_OSX_CAPITAL_OE,
+  NEO2_LMOD3,
+  NEO2_RMOD3,
+  NEO2_1,
+  NEO2_2,
+  NEO2_3,
+  NEO2_4,
+  NEO2_5,
+  NEO2_6,
+  NEO2_7,
+  NEO2_8,
+  NEO2_9,
+  NEO2_0,
+  NEO2_MINUS,
+  NEO2_UE,
+  NEO2_AE,
+  NEO2_OE,
+  NEO2_COMMA,
+  NEO2_DOT,
+  NEO2_SHARP_S,
+  NEO2_CRCMFLX,
+  NEO2_GRV,
+  NEO2_ACUT,
   SYMBOL,
   NUMPAD
 };
+
 
 #define _BASE 0
 #define _SHIFT 1
@@ -15,63 +44,266 @@ enum my_keycodes {
 #define _QWERTZ 6
 #define _FUNC 7
 
-
+// bitmasks for modifier keys
+#define MODS_NONE   0
+#define MODS_SHIFT  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
+#define MODS_CTRL   (MOD_BIT(KC_LCTL)|MOD_BIT(KC_RCTRL))
+#define MODS_ALT    (MOD_BIT(KC_LALT)|MOD_BIT(KC_RALT))
+#define MODS_GUI    (MOD_BIT(KC_LGUI)|MOD_BIT(KC_RGUI))
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch(keycode) {
-    case SHIFT:
+    case NEO2_CRCMFLX:
       if (record->event.pressed) {
-        layer_on(_SHIFT);
-        // update_tri_layer(_SHIFT, _SYMBOL, _GREEK);
+        if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+          register_code16(UC(0x30C));
+        } else {
+          register_code(KC_GRV);
+        }
       } else {
-        layer_off(_SHIFT);
-        // update_tri_layer(_SHIFT, _SYMBOL, _GREEK);
+        unregister_code16(UC(0x30C));
+        unregister_code(KC_GRV);
       }
       return false;
+    case NEO2_1:
+      if (record->event.pressed) {
+        if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+          register_code16(KC_TILD);
+        } else {
+          register_code(KC_1);
+        }
+      } else {
+        unregister_code16(KC_TILD);
+        unregister_code(KC_1);
+      }
+      return false;
+    case NEO2_2:
+      if (record->event.pressed) {
+        if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+          register_code16(KC_HASH);
+        } else {
+          register_code(KC_2);
+        }
+      } else {
+        unregister_code16(KC_HASH);
+        unregister_code(KC_2);
+      }
+      return false;
+    case NEO2_3:
+      if (record->event.pressed) {
+        if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+          register_code16(UC(0x2113));
+        } else {
+          register_code(KC_3);
+        }
+      } else {
+        unregister_code16(UC(0x2113));
+        unregister_code(KC_3);
+      }
+      return false;
+    case NEO2_4:
+      if (record->event.pressed) {
+        if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+          register_code16(UC(0xBB));
+        } else {
+          register_code(KC_4);
+        }
+      } else {
+        unregister_code16(UC(0xBB));
+        unregister_code(KC_4);
+      }
+      return false;
+    case NEO2_5:
+        if (record->event.pressed) {
+          if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+            register_code16(UC(0xAB));
+          } else {
+            register_code(KC_5);
+          }
+        } else {
+          unregister_code16(UC(0xAB));
+          unregister_code(KC_5);
+        }
+        return false;
+    case NEO2_6:
+        if (record->event.pressed) {
+          if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+            register_code16(KC_DLR);
+          } else {
+            register_code(KC_6);
+          }
+        } else {
+          unregister_code16(KC_DLR);
+          unregister_code(KC_6);
+        }
+        return false;
+    case NEO2_7:
+        if (record->event.pressed) {
+          if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+            register_code16(ALGR(KC_E));
+          } else {
+            register_code(KC_7);
+          }
+        } else {
+          unregister_code16(ALGR(KC_E));
+          unregister_code(KC_7);
+        }
+        return false;
+    case NEO2_8:
+        if (record->event.pressed) {
+          if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+            register_code16(UC(0x201E));
+          } else {
+            register_code(KC_8);
+          }
+        } else {
+          unregister_code16(UC(0x201E));
+          unregister_code(KC_8);
+        }
+        return false;
+    case NEO2_9:
+        if (record->event.pressed) {
+          if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+            register_code16(UC(0x201C));
+          } else {
+            register_code(KC_9);
+          }
+        } else {
+          unregister_code16(UC(0x201C));
+          unregister_code(KC_9);
+        }
+        return false;
+    case NEO2_0:
+        if (record->event.pressed) {
+          if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+            register_code16(UC(0x201D));
+          } else {
+            register_code(KC_0);
+          }
+        } else {
+          unregister_code16(UC(0x201D));
+          unregister_code(KC_0);
+        }
+        return false;
+    case NEO2_MINUS:
+        if (record->event.pressed) {
+          if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+            register_code16(UC(0x2014));
+          } else {
+            register_code(KC_SLSH);
+          }
+        } else {
+          unregister_code16(UC(0x2014));
+          unregister_code(KC_SLSH);
+        }
+        return false;
+    case NEO2_GRV:
+        if (record->event.pressed) {
+          if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+            register_code16(UC(0x327));
+          } else {
+            register_code16(S(KC_EQL));
+          }
+        } else {
+          unregister_code16(UC(0x327));
+          unregister_code16(S(KC_EQL));
+        }
+        return false;
+    case NEO2_ACUT:
+        if (record->event.pressed) {
+          if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+            register_code16(UC(0x303));
+          } else {
+            register_code(KC_EQL);
+          }
+        } else {
+          unregister_code16(UC(0x303));
+          unregister_code(KC_EQL);
+        }
+        return false;
+      case NEO2_SHARP_S:
+          if (record->event.pressed) {
+            if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+              register_code16(UC(0x1E9E));
+            } else {
+              register_code(KC_MINS);
+            }
+          } else {
+            unregister_code16(UC(0x1E9E));
+            unregister_code(KC_MINS);
+          }
+          return false;
+      case NEO2_COMMA:
+          if (record->event.pressed) {
+            if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+              register_code16(UC(0x2013));
+            } else {
+              register_code(KC_COMM);
+            }
+          } else {
+            unregister_code16(UC(0x2013));
+            unregister_code(KC_COMM);
+          }
+          return false;
+      case NEO2_DOT:
+          if (record->event.pressed) {
+            if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+              register_code16(UC(0x2022));
+            } else {
+              register_code(KC_DOT);
+            }
+          } else {
+            unregister_code16(UC(0x2022));
+            unregister_code(KC_DOT);
+          }
+          return false;
     case SYMBOL:
       if (record->event.pressed) {
-        layer_on(_SYMBOL);
-        // update_tri_layer(_SHIFT, _SYMBOL, _GREEK);
-        // update_tri_layer(_NUMPAD, _SYMBOL, _MATH);
+        if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+          layer_on(_GREEK);
+        } else {
+          layer_on(_SYMBOL);
+          update_tri_layer(_NUMPAD, _SYMBOL, _MATH);
+        }
       } else {
-        layer_off(_SYMBOL);
-        // update_tri_layer(_SHIFT, _SYMBOL, _GREEK);
-        // update_tri_layer(_NUMPAD, _SYMBOL, _MATH);
+          layer_off(_GREEK);
+          layer_off(_SYMBOL);
+          update_tri_layer(_NUMPAD, _SYMBOL, _MATH);
       }
       return false;
     case NUMPAD:
       if (record->event.pressed) {
         layer_on(_NUMPAD);
-        // update_tri_layer(_NUMPAD, _SYMBOL, _MATH);
+        update_tri_layer(_NUMPAD, _SYMBOL, _MATH);
       } else {
         layer_off(_NUMPAD);
-        // update_tri_layer(_NUMPAD, _SYMBOL, _MATH);
+        update_tri_layer(_NUMPAD, _SYMBOL, _MATH);
       }
       return false;
     }
   return true;
 }
-layer_state_t layer_state_set_user(layer_state_t state) {
-  state = update_tri_layer_state(state, _SHIFT, _SYMBOL, _GREEK);
-  state = update_tri_layer_state(state, _SYMBOL, _NUMPAD, _MATH);
-  return state;
-}
+// layer_state_t layer_state_set_user(layer_state_t state) {
+//   state = update_tri_layer_state(state, _SHIFT, _SYMBOL, _GREEK);
+//   state = update_tri_layer_state(state, _SYMBOL, _NUMPAD, _MATH);
+//   return state;
+// }
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
-            KC_GRV,            KC_1,       KC_2,       KC_3,       KC_4,             KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,          KC_SLSH, S(KC_EQL),       KC_BSPC,
-            KC_TAB,            KC_X,       KC_V,       KC_L,       KC_C,             KC_W,       KC_K,       KC_H,       KC_G,       KC_F,       KC_Q,          KC_MINS,    KC_EQL,        SYMBOL,
-            SYMBOL,            KC_U,       KC_I,       KC_A,       KC_E,             KC_O,       KC_S,       KC_N,       KC_R,       KC_T,      KC_D,              KC_Z,                   KC_ENT,
-             SHIFT,                     KC_LBRC,    KC_SCLN,    KC_QUOT,             KC_P,       KC_Y,       KC_B,       KC_M,    KC_COMM,     KC_DOT,      LT(1, KC_J),     KC_UP, LT(7, KC_DEL),
+      NEO2_CRCMFLX,          NEO2_1,     NEO2_2,     NEO2_3,     NEO2_4,           NEO2_5,     NEO2_6,     NEO2_7,     NEO2_8,     NEO2_9,     NEO2_0,       NEO2_MINUS,  NEO2_GRV,       KC_BSPC,
+            KC_TAB,            KC_X,       KC_V,       KC_L,       KC_C,             KC_W,       KC_K,       KC_H,       KC_G,       KC_F,       KC_Q,     NEO2_SHARP_S, NEO2_ACUT,        SYMBOL,
+            SYMBOL,            KC_U,       KC_I,       KC_A,       KC_E,             KC_O,       KC_S,       KC_N,       KC_R,       KC_T,       KC_D,             KC_Z,                   KC_ENT,
+           KC_LSFT,                     KC_LBRC,    KC_SCLN,    KC_QUOT,             KC_P,       KC_Y,       KC_B,       KC_M, NEO2_COMMA,   NEO2_DOT,     RSFT_T(KC_J),     KC_UP, LT(7, KC_DEL),
            KC_LCTL,          NUMPAD,    KC_LALT,                                   KC_SPC,                                         NUMPAD,      TT(6),          KC_LEFT,   KC_DOWN,       KC_RGHT
     ),
-    [1] = LAYOUT(
-         UC(0x30C),         KC_TILD,    KC_HASH, UC(0x2113),   UC(0xBB),         UC(0xAB),     KC_DLR, ALGR(KC_E), UC(0x201E), UC(0x201C), UC(0x201D),       UC(0x2014),  UC(0x327),       KC_BSPC,
-         S(KC_TAB),         S(KC_X),    S(KC_V),    S(KC_L),    S(KC_C),          S(KC_W),    S(KC_K),    S(KC_H),    S(KC_G),    S(KC_F),    S(KC_Q),       UC(0x1E9E),  UC(0x303),       _______,
-           _______,         S(KC_U),    S(KC_I),    S(KC_A),    S(KC_E),          S(KC_O),    S(KC_S),    S(KC_N),    S(KC_R),    S(KC_T),    S(KC_D),          S(KC_Z),                 S(KC_ENT),
-           _______,                  S(KC_LBRC), S(KC_SCLN), S(KC_QUOT),          S(KC_P),    S(KC_Y),    S(KC_B),    S(KC_M), UC(0x2013), UC(0x2022),          S(KC_J),    S(KC_UP),       KC_DEL,
-        S(KC_LCTL),         _______, S(KC_LALT),                                  _______,                    LM(_NUMPAD, MOD_LSFT),    _______,       S(KC_LEFT),  S(KC_DOWN),    S(KC_RGHT)
-    ),
+    // [1] = LAYOUT(
+    //      UC(0x30C),         KC_TILD,    KC_HASH, UC(0x2113),   UC(0xBB),         UC(0xAB),     KC_DLR, ALGR(KC_E), UC(0x201E), UC(0x201C), UC(0x201D),       UC(0x2014),  UC(0x327),       KC_BSPC,
+    //      S(KC_TAB),         S(KC_X),    S(KC_V),    S(KC_L),    S(KC_C),          S(KC_W),    S(KC_K),    S(KC_H),    S(KC_G),    S(KC_F),    S(KC_Q),       UC(0x1E9E),  UC(0x303),       _______,
+    //        _______,         S(KC_U),    S(KC_I),    S(KC_A),    S(KC_E),          S(KC_O),    S(KC_S),    S(KC_N),    S(KC_R),    S(KC_T),    S(KC_D),          S(KC_Z),                 S(KC_ENT),
+    //        _______,                  S(KC_LBRC), S(KC_SCLN), S(KC_QUOT),          S(KC_P),    S(KC_Y),    S(KC_B),    S(KC_M), UC(0x2013), UC(0x2022),          S(KC_J),    S(KC_UP),       KC_DEL,
+    //     S(KC_LCTL),         _______, S(KC_LALT),                                  _______,                    LM(_NUMPAD, MOD_LSFT),    _______,       S(KC_LEFT),  S(KC_DOWN),    S(KC_RGHT)
+    // ),
     [2] = LAYOUT(
            XXXXXXX,        UC(0xB9),   UC(0xB2),   UC(0xB3),    UC(0x203A),    UC(0x2039),   UC(0xA2),   UC(0xA5), UC(0x201A), UC(0x2018), UC(0x2019),           XXXXXXX,  UC(0x30A),       KC_BSPC,
            _______,      UC(0x2026), S(KC_SLSH), ALGR(KC_8),    ALGR(KC_9),      UC(0x5E),    S(KC_1),    KC_NUBS, S(KC_NUBS),    S(KC_0),    S(KC_6),         UC(0x17F),  UC(0x338),       _______,

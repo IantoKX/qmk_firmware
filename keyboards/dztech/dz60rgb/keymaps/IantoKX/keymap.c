@@ -56,12 +56,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_CRCMFLX:
       if (record->event.pressed) {
         if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-          register_code16(UC(0x30C));
+          process_unicode((0x30C|QK_UNICODE), record);
         } else {
           register_code(KC_GRV);
         }
       } else {
-        unregister_code16(UC(0x30C));
         unregister_code(KC_GRV);
       }
       return false;
@@ -92,36 +91,33 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_3:
       if (record->event.pressed) {
         if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-          register_code16(UC(0x2113));
+          process_unicode((0x2113 |QK_UNICODE), record);
         } else {
           register_code(KC_3);
         }
       } else {
-        unregister_code16(UC(0x2113));
         unregister_code(KC_3);
       }
       return false;
     case NEO2_4:
       if (record->event.pressed) {
         if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-          register_code16(UC(0xBB));
+          process_unicode((0xBB|QK_UNICODE), record);
         } else {
           register_code(KC_4);
         }
       } else {
-        unregister_code16(UC(0xBB));
         unregister_code(KC_4);
       }
       return false;
     case NEO2_5:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            register_code16(UC(0xAB));
+            process_unicode((0xAB|QK_UNICODE), record);
           } else {
             register_code(KC_5);
           }
         } else {
-          unregister_code16(UC(0xAB));
           unregister_code(KC_5);
         }
         return false;
@@ -152,108 +148,99 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_8:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            register_code16(UC(0x201E));
+            process_unicode((0x201E|QK_UNICODE), record);
           } else {
             register_code(KC_8);
           }
         } else {
-          unregister_code16(UC(0x201E));
           unregister_code(KC_8);
         }
         return false;
     case NEO2_9:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            register_code16(UC(0x201C));
+            process_unicode((0x201C|QK_UNICODE), record);
           } else {
             register_code(KC_9);
           }
         } else {
-          unregister_code16(UC(0x201C));
           unregister_code(KC_9);
         }
         return false;
     case NEO2_0:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            register_code16(UC(0x201D));
+            process_unicode((0x201D|QK_UNICODE), record);
           } else {
             register_code(KC_0);
           }
         } else {
-          unregister_code16(UC(0x201D));
           unregister_code(KC_0);
         }
         return false;
     case NEO2_MINUS:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            register_code16(UC(0x2014));
+            process_unicode((0x2014|QK_UNICODE), record);
           } else {
             register_code(KC_SLSH);
           }
         } else {
-          unregister_code16(UC(0x2014));
           unregister_code(KC_SLSH);
         }
         return false;
     case NEO2_GRV:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            register_code16(UC(0x327));
+            process_unicode((0x327|QK_UNICODE), record);
           } else {
             register_code16(S(KC_EQL));
           }
         } else {
-          unregister_code16(UC(0x327));
           unregister_code16(S(KC_EQL));
         }
         return false;
     case NEO2_ACUT:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            register_code16(UC(0x303));
+            process_unicode((0x303|QK_UNICODE), record);
           } else {
             register_code(KC_EQL);
           }
         } else {
-          unregister_code16(UC(0x303));
           unregister_code(KC_EQL);
         }
         return false;
       case NEO2_SHARP_S:
           if (record->event.pressed) {
             if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-              register_code16(UC(0x1E9E));
+              process_unicode((0x1E9E|QK_UNICODE), record);
             } else {
               register_code(KC_MINS);
             }
           } else {
-            unregister_code16(UC(0x1E9E));
             unregister_code(KC_MINS);
           }
           return false;
       case NEO2_COMMA:
           if (record->event.pressed) {
             if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-              register_code16(UC(0x2013));
+              process_unicode((0x2013|QK_UNICODE), record);
             } else {
               register_code(KC_COMM);
             }
           } else {
-            unregister_code16(UC(0x2013));
             unregister_code(KC_COMM);
           }
           return false;
       case NEO2_DOT:
           if (record->event.pressed) {
             if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-              register_code16(UC(0x2022));
+              process_unicode((0x2022|QK_UNICODE), record);
             } else {
               register_code(KC_DOT);
             }
           } else {
-            unregister_code16(UC(0x2022));
             unregister_code(KC_DOT);
           }
           return false;

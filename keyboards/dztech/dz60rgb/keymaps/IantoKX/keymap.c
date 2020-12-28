@@ -133,18 +133,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           unregister_code(KC_6);
         }
         return false;
-    case NEO2_7:
+    case NEO2_7: {
+      static uint8_t kc;
+
         if (record->event.pressed) {
-          if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            register_code16(ALGR(KC_E));
+          bool isShifted = get_mods() & MOD_MASK_SHIFT;
+          if (isShifted) {
+            del_mods(MOD_MASK_SHIFT);
+            add_mods(MOD_RALT);
+            kc = KC_E;
           } else {
-            register_code(KC_7);
+            kc = KC_7;
+          }
+
+          register_code(kc);
+
+          if (isShifted) {
+            del_mods(MOD_RALT);
+            register_code(KC_LSFT);
           }
         } else {
-          unregister_code16(ALGR(KC_E));
-          unregister_code(KC_7);
+          unregister_code(kc);
         }
         return false;
+      }
     case NEO2_8:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
@@ -211,29 +223,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           unregister_code(KC_EQL);
         }
         return false;
-      case NEO2_SHARP_S:
-          if (record->event.pressed) {
-            if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-              process_unicode((0x1E9E|QK_UNICODE), record);
-            } else {
-              register_code(KC_MINS);
-            }
+    case NEO2_SHARP_S:
+        if (record->event.pressed) {
+          if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+            process_unicode((0x1E9E|QK_UNICODE), record);
           } else {
-            unregister_code(KC_MINS);
+            register_code(KC_MINS);
           }
-          return false;
-      case NEO2_COMMA:
-          if (record->event.pressed) {
-            if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-              process_unicode((0x2013|QK_UNICODE), record);
-            } else {
-              register_code(KC_COMM);
-            }
+        } else {
+          unregister_code(KC_MINS);
+        }
+        return false;
+    case NEO2_COMMA:
+        if (record->event.pressed) {
+          if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+            process_unicode((0x2013|QK_UNICODE), record);
           } else {
-            unregister_code(KC_COMM);
+            register_code(KC_COMM);
           }
-          return false;
-      case NEO2_DOT:
+        } else {
+          unregister_code(KC_COMM);
+        }
+        return false;
+    case NEO2_DOT:
           if (record->event.pressed) {
             if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
               process_unicode((0x2022|QK_UNICODE), record);
@@ -245,6 +257,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           }
           return false;
     case SYMBOL:
+    /**
+    * FIXME: when both SYMBOLs are pressed, releasing one shoud not
+    * turn off SYMBOL, releasing both should
+    */
       if (record->event.pressed) {
         if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
           layer_on(_GREEK);
@@ -253,6 +269,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           update_tri_layer(_NUMPAD, _SYMBOL, _MATH);
         }
       } else {
+        if (IS_LAYER_ON(_GREEK)) {
+          add_mods(MOD_LSFT);
+        }
           layer_off(_GREEK);
           layer_off(_SYMBOL);
           update_tri_layer(_NUMPAD, _SYMBOL, _MATH);
@@ -267,14 +286,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         update_tri_layer(_NUMPAD, _SYMBOL, _MATH);
       }
       return false;
-    }
+    case KC_LSFT:
+      if (record->event.pressed) {
+        if (IS_LAYER_ON(_SYMBOL)) {
+          layer_on(_GREEK);
+        } else {
+          add_mods(MOD_LSFT);
+        }
+      } else {
+        if (IS_LAYER_ON(_GREEK)) {
+          layer_off(_GREEK);
+          layer_on(_SYMBOL);
+        }
+          del_mods(MOD_LSFT);
+      }
+      return false;
+  }
   return true;
 }
-// layer_state_t layer_state_set_user(layer_state_t state) {
-//   state = update_tri_layer_state(state, _SHIFT, _SYMBOL, _GREEK);
-//   state = update_tri_layer_state(state, _SYMBOL, _NUMPAD, _MATH);
-//   return state;
-// }
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(

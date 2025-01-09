@@ -56,7 +56,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_CRCMFLX:
       if (record->event.pressed) {
         if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-          process_unicode((0x30C|QK_UNICODE), record);
+          register_unicode(0x30C);
         } else {
           register_code(KC_GRV);
         }
@@ -91,7 +91,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_3:
       if (record->event.pressed) {
         if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-          process_unicode((0x2113 |QK_UNICODE), record);
+          register_unicode(0x2113);
         } else {
           register_code(KC_3);
         }
@@ -102,7 +102,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_4:
       if (record->event.pressed) {
         if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-          process_unicode((0xBB|QK_UNICODE), record);
+          register_unicode(0xBB);
         } else {
           register_code(KC_4);
         }
@@ -113,7 +113,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_5:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            process_unicode((0xAB|QK_UNICODE), record);
+            register_unicode(0xAB);
           } else {
             register_code(KC_5);
           }
@@ -160,7 +160,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_8:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            process_unicode((0x201E|QK_UNICODE), record);
+            register_unicode(0x201E);
           } else {
             register_code(KC_8);
           }
@@ -171,7 +171,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_9:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            process_unicode((0x201C|QK_UNICODE), record);
+            register_unicode(0x201C);
           } else {
             register_code(KC_9);
           }
@@ -182,7 +182,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_0:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            process_unicode((0x201D|QK_UNICODE), record);
+            register_unicode(0x201D);
           } else {
             register_code(KC_0);
           }
@@ -193,7 +193,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_MINUS:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            process_unicode((0x2014|QK_UNICODE), record);
+            register_unicode(0x2014);
           } else {
             register_code(KC_SLSH);
           }
@@ -204,7 +204,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_GRV:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            process_unicode((0x327|QK_UNICODE), record);
+            register_unicode(0x327);
           } else {
             register_code16(S(KC_EQL));
           }
@@ -215,7 +215,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_ACUT:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            process_unicode((0x303|QK_UNICODE), record);
+            register_unicode(0x303);
           } else {
             register_code(KC_EQL);
           }
@@ -226,7 +226,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_SHARP_S:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            process_unicode((0x1E9E|QK_UNICODE), record);
+            register_unicode(0x1E9E);
           } else {
             register_code(KC_MINS);
           }
@@ -237,7 +237,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_COMMA:
         if (record->event.pressed) {
           if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            process_unicode((0x2013|QK_UNICODE), record);
+            register_unicode(0x2013);
           } else {
             register_code(KC_COMM);
           }
@@ -248,7 +248,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case NEO2_DOT:
           if (record->event.pressed) {
             if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-              process_unicode((0x2022|QK_UNICODE), record);
+              register_unicode(0x2022);
             } else {
               register_code(KC_DOT);
             }
@@ -364,7 +364,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            _______,         _______,    _______,                        UC(0x202F),                                               _______,    _______,    _______,   _______, _______
     ),
     [6] = LAYOUT_60_iso_5x1u_split_rshift(
-           KC_GESC,            KC_1,       KC_2,       KC_3,          KC_4,       KC_5,          KC_6,       KC_7,       KC_8,       KC_9,       KC_0,    KC_MINS,    KC_EQL,      KC_BSPC,
+           KC_ESC,            KC_1,       KC_2,       KC_3,          KC_4,       KC_5,          KC_6,       KC_7,       KC_8,       KC_9,       KC_0,    KC_MINS,    KC_EQL,      KC_BSPC,
             KC_TAB,            KC_Q,       KC_W,       KC_E,          KC_R,       KC_T,          KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,    KC_LBRC,   KC_RBRC,
            KC_CAPS,            KC_A,       KC_S,       KC_D,          KC_F,       KC_G,          KC_H,       KC_J,       KC_K,       KC_L,    KC_SCLN,    KC_QUOT,   KC_HASH,       KC_ENT,
            KC_LSFT,         KC_BSLS,       KC_Z,       KC_X,          KC_C,       KC_V,          KC_B,       KC_N,       KC_M,    KC_COMM,     KC_DOT,    KC_SLSH,   KC_RSFT, LT(7,KC_DEL),
@@ -373,7 +373,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [7] = LAYOUT_60_iso_5x1u_split_rshift(
            _______,           KC_F1,      KC_F2,      KC_F3,         KC_F4,      KC_F5,         KC_F6,      KC_F7,      KC_F8,      KC_F9,     KC_F10,     KC_F11,    KC_F12,        KC_DEL,
            _______,         RGB_TOG,    _______,    RGB_HUI,       RGB_HUD,    RGB_SAI,       RGB_SAD,    RGB_VAI,    RGB_VAD,    RGB_MOD,    _______,    _______,   _______,
-           _______,         _______,    _______,    _______,       _______,    _______,       _______,    _______,    RGB_SPI,    RGB_SPD,    _______,    _______,   _______,         RESET,
+           _______,         _______,    _______,    _______,       _______,    _______,       _______,    _______,    RGB_SPI,    RGB_SPD,    _______,    _______,   _______,       QK_BOOT,
            _______,         _______,    _______,    _______,       _______,    _______,       _______,    _______,    _______,    _______,    _______,    _______,   _______,       _______,
            _______,         _______,    _______,                            _______,                                              _______,    UC_PREV,     UC_WIN,   UC_WINC,       UC_NEXT
     )

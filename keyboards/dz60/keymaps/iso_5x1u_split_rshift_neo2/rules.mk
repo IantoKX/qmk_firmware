@@ -31,3 +31,4 @@ AUDIO_ENABLE = no              # Audio output on port C6
 FAUXCLICKY_ENABLE = no         # Use buzzer to emulate clicky switches
 NO_USB_STARTUP_CHECK = no      # Disable initialization only when usb is plugged in
 UNICODE_ENABLE = yes					 # enable unicode input
+TAP_DANCE_ENABLE = yes			# enable Tap Dance

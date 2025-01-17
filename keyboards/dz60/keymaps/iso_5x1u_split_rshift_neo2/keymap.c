@@ -31,7 +31,8 @@ enum custom_keycodes {
   NEO2_GRV,
   NEO2_ACUT,
   SYMBOL,
-  NUMPAD
+  NUMPAD,
+  TD_RESET
 };
 
 
@@ -50,6 +51,10 @@ enum custom_keycodes {
 #define MODS_CTRL   (MOD_BIT(KC_LCTL)|MOD_BIT(KC_RCTRL))
 #define MODS_ALT    (MOD_BIT(KC_LALT)|MOD_BIT(KC_RALT))
 #define MODS_GUI    (MOD_BIT(KC_LGUI)|MOD_BIT(KC_RGUI))
+
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_RESET] = ACTION_TAP_DANCE_DOUBLE(KC_SEMICOLON, QK_BOOT)
+};
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch(keycode) {
@@ -373,7 +378,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [7] = LAYOUT_60_iso_5x1u_split_rshift(
            _______,           KC_F1,      KC_F2,      KC_F3,         KC_F4,      KC_F5,         KC_F6,      KC_F7,      KC_F8,      KC_F9,     KC_F10,     KC_F11,    KC_F12,        KC_DEL,
            _______,         RGB_TOG,    _______,    RGB_HUI,       RGB_HUD,    RGB_SAI,       RGB_SAD,    RGB_VAI,    RGB_VAD,    RGB_MOD,    _______,    _______,   _______,
-           _______,         _______,    _______,    _______,       _______,    _______,       _______,    _______,    RGB_SPI,    RGB_SPD,    _______,    _______,   _______,       QK_BOOT,
+           _______,         _______,    _______,    _______,       _______,    _______,       _______,    _______,    RGB_SPI,    RGB_SPD,    _______,    _______,   _______,       KC_PSCR,
            _______,         _______,    _______,    _______,       _______,    _______,       _______,    _______,    _______,    _______,    _______,    _______,   _______,       _______,
            _______,         _______,    _______,                            _______,                                              _______,    UC_PREV,     UC_WIN,   UC_WINC,       UC_NEXT
     )
